@@ -36,7 +36,7 @@ public class GameSession : MonoBehaviour
         canvas = GetComponentInChildren<Canvas>();
     }
 
-    public void processPlayerDeath()
+    public void ProcessPlayerDeath()
     {
         if (playerLives > 1)
             Invoke(nameof(TakeLife), deathDelay);

@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip()
     {
-        bool isMovingHorizontally = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+        var isMovingHorizontally = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
 
         if (isMovingHorizontally)
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetTrigger("Death");
             isAlive = false;
-            gameSession.processPlayerDeath();
+            gameSession.ProcessPlayerDeath();
         }
     }
 
@@ -163,13 +163,13 @@ public class PlayerMovement : MonoBehaviour
     void Shoot()
     {
         animator.SetTrigger("Shoot");
-        GameObject bullet = Instantiate(bulletPrefab, gunTransform.position, transform.rotation);
+        var bullet = Instantiate(bulletPrefab, gunTransform.position, transform.rotation);
         bullet.transform.localScale = new Vector2(transform.localScale.x, 1f);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.CompareTag("Ground"))
             if (collision.relativeVelocity.y > 0)
                 isJumping = false;
     }
